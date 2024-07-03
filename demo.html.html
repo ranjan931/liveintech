@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Website</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+        window.tailwind.config = {
+            darkMode: ['class'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            :root {
+                --background: 0 0% 100%;
+                --foreground: 240 10% 3.9%;
+                --card: 0 0% 100%;
+                --card-foreground: 240 10% 3.9%;
+                --popover: 0 0% 100%;
+                --popover-foreground: 240 10% 3.9%;
+                --primary: 240 5.9% 10%;
+                --primary-foreground: 0 0% 98%;
+                --secondary: 240 4.8% 95.9%;
+                --secondary-foreground: 240 5.9% 10%;
+                --muted: 240 4.8% 95.9%;
+                --muted-foreground: 240 3.8% 46.1%;
+                --accent: 240 4.8% 95.9%;
+                --accent-foreground: 240 5.9% 10%;
+                --destructive: 0 84.2% 60.2%;
+                --destructive-foreground: 0 0% 98%;
+                --border: 240 5.9% 90%;
+                --input: 240 5.9% 90%;
+                --ring: 240 5.9% 10%;
+                --radius: 0.5rem;
+            }
+            .dark {
+                --background: 240 10% 3.9%;
+                --foreground: 0 0% 98%;
+                --card: 240 10% 3.9%;
+                --card-foreground: 0 0% 98%;
+                --popover: 240 10% 3.9%;
+                --popover-foreground: 0 0% 98%;
+                --primary: 0 0% 98%;
+                --primary-foreground: 240 5.9% 10%;
+                --secondary: 240 3.7% 15.9%;
+                --secondary-foreground: 0 0% 98%;
+                --muted: 240 3.7% 15.9%;
+                --muted-foreground: 240 5% 64.9%;
+                --accent: 240 3.7% 15.9%;
+                --accent-foreground: 0 0% 98%;
+                --destructive: 0 62.8% 30.6%;
+                --destructive-foreground: 0 0% 98%;
+                --border: 240 3.7% 15.9%;
+                --input: 240 3.7% 15.9%;
+                --ring: 240 4.9% 83.9%;
+            }
+        }
+    </style>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header, .parallax {
+            height: 100vh;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+        }
+
+        header {
+            background-image: url('a12.avif');
+        }
+
+        #section2 {
+            background-image: url('a13.avif');
+        }
+
+        #section3 {
+            background-image: url('a14.avif');
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            text-align: right;
+            width: 100%;
+        }
+
+        .overlay h1 {
+            font-size: 3em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .overlay p {
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .content {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background-color: rgb(69, 63, 63);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .image-container {
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .image-container img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white dark:bg-zinc-800 p-4 fixed w-full top-0 z-10 flex justify-between items-center">
+        <div class="text-xl font-bold text-primary">LIVEINTECH</div>
+        <div class="space-x-4">
+            <a href="#section1" class="text-zinc-700 dark:text-zinc-300 hover:text-primary">Home</a>
+            <a href="#section2" class="text-zinc-700 dark:text-zinc-300 hover:text-primary">Why Studio</a>
+            <a href="#section3" class="text-zinc-700 dark:text-zinc-300 hover:text-primary">Tracks</a>
+            <a href="#" class="text-zinc-700 dark:text-zinc-300 hover:text-primary">Catalysts</a>
+            <a href="#" class="text-zinc-700 dark:text-zinc-300 hover:text-primary">About</a>
+            <a href="#" class="text-zinc-700 dark:text-zinc-300 hover:text-primary">iRise</a>
+            <button class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded">PITCH</button>
+        </div>
+    </nav>
+    <header class="parallax" id="section1">
+        <div class="overlay">
+            <div class="image-container">
+                <img src="144.avif" alt="Sample Image">
+            </div>
+            <div>
+                <h1>OPERATIONAL COFOUNDER.|</h1>&nbsp;
+                <p>We collaborate with exceptional 'Entrepreneurs' and 'Intrapreneurs' to bring meaningful ideas to reality. We encourage collaboration through validation, talent, resources, and investment.</p>
+            </div>
+        </div>
+    </header>
+    <div class="parallax" id="section2">
+        <div class="overlay">
+            <div class="image-container">
+                <img src="123.avif" alt="Sample Image">
+            </div>
+            <div>
+                <h1>TOGETHER FROM IDEA TO ICONIC</h1>&nbsp;
+                <p>We believe in an outcome-driven process to test assumptions, eliminate confirmation biases, and operate with passion. We reduce a process that could take years to months. We ensure that you are pursuing the right market, that you are fully validated, and that you are surrounded by incredible teammates.</p>
+            </div>
+        </div>
+    </div>
+    <div class="parallax" id="section3">
+        <div class="overlay">
+            <div class="image-container">
+                <img src="144.avif" alt="Sample Image">
+            </div>
+            <div>
+                <h1>COCREATE & COINVEST</h1>&nbsp;
+                <p>We provide a streamlined risk-reward framework for co-creation, encompassing validation, solutioning, risk mitigation, and capability-capitalTM, so that entrepreneurs may focus on product and market fit.</p>
+            </div>
+        </div>
+    </div>
+    <footer class="content">
+        <h2 style="color: rgb(0, 128, 255);">TOGETHER FROM IDEA TO ICONIC.</h2>
+        <p>We are in the early stages of a new wave of software opportunities, and there is enormous opportunity for new category leaders to emerge. AI, Web3, cybersecurity, data platforms, SaaS applications, finance, marketplaces and e-commerce infrastructure, and consumer and social media are all areas of current interest. If you are a dreamer or aspire to be one someday, please reach out.</p>
+        <p>Get In Touch<br>contact@liveintech.co<br>
+        <span style="color: rgb(0, 128, 255);">+91 80 617 70969</span></p>
+    </footer>
+</body>
+</html>
